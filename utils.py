@@ -42,7 +42,6 @@ def validate_grant(endpoint: str, method: str, id_rol: int) -> bool:
     body = {
         "url": endpoint,
         "method": method
-
     }
     response = requests.get(url, headers=HEADERS, json=body)
     try:
