@@ -11,7 +11,8 @@ from political_party_blueprints import political_party_blueprints
 from vote_blueprints import vote_blueprints
 from user_blueprints import user_blueprints
 from rol_blueprints import rol_blueprints
-#from permission_blueprints import permission_blueprints
+from permission_blueprints import permission_blueprints
+
 
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = "misiontic"
@@ -24,7 +25,8 @@ app.register_blueprint(political_party_blueprints)
 app.register_blueprint(candidate_blueprints)
 app.register_blueprint(user_blueprints)
 app.register_blueprint(rol_blueprints)
-#app.register_blueprint(permission_blueprints)
+app.register_blueprint(permission_blueprints)
+
 
 @app.before_request
 def before_request_callback():
