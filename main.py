@@ -1,31 +1,30 @@
 from datetime import timedelta
-import requests
 from flask import Flask, request
 from flask_cors import CORS
 from flask_jwt_extended import (verify_jwt_in_request, get_jwt_identity, JWTManager, create_access_token)
 from waitress import serve
 import utils
 import requests
-from table_blueprints import table_blueprint
-from candidate_blueprints import candidate_blueprint
-from political_party_blueprints import political_party_blueprint
-from vote_blueprints import vote_blueprint
-from user_blueprints import user_blueprint
-from rol_blueprints import rol_blueprint
-
+from table_blueprints import table_blueprints
+from candidate_blueprints import candidate_blueprints
+from political_party_blueprints import political_party_blueprints
+from vote_blueprints import vote_blueprints
+from user_blueprints import user_blueprints
+from rol_blueprints import rol_blueprints
+#from permission_blueprints import permission_blueprints
 
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = "misiontic"
 cors = CORS(app)
 jwt = JWTManager(app)
 
-app.register_blueprint(table_blueprint)
-app.register_blueprint(vote_blueprint)
-app.register_blueprint(political_party_blueprint)
-app.register_blueprint(candidate_blueprint)
-app.register_blueprint(user_blueprint)
-app.register_blueprint(rol_blueprint)
-
+app.register_blueprint(table_blueprints)
+app.register_blueprint(vote_blueprints)
+app.register_blueprint(political_party_blueprints)
+app.register_blueprint(candidate_blueprints)
+app.register_blueprint(user_blueprints)
+app.register_blueprint(rol_blueprints)
+#app.register_blueprint(permission_blueprints)
 
 @app.before_request
 def before_request_callback():
