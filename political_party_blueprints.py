@@ -6,8 +6,7 @@ political_party_blueprints = Blueprint("political_party_blueprints", __name__)
 data_config = load_file_config()
 url_base = data_config.get("url-backend-result") + "/political_party"
 
-
-@political_party_blueprints.route("/political_party", methods=['GET'])
+@political_party_blueprints.route("/political_partys", methods=['GET'])
 def get_all_political_party() -> dict:
     url = url_base + "/all"
     response = requests.get(url, headers=HEADERS)

@@ -6,7 +6,7 @@ table_blueprints = Blueprint("table_blueprints", __name__)
 data_config = load_file_config()
 url_base = data_config.get("url-backend-result") + "/table"
 
-@table_blueprints.route("/table", methods=['GET'])
+@table_blueprints.route("/tables", methods=['GET'])
 def get_all_table() -> dict:
     url = url_base + "/all"
     response = requests.get(url, headers=HEADERS)
