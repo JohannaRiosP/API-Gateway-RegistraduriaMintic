@@ -3,7 +3,7 @@ import requests
 security_backend = "http://127.0.0.1:8083"
 headers = {"Content-Type": "application/json; charset=utf-8"}
 
-#Create roles
+# Create roles
 roles = [
     {"name": "Administrador", "description": "Administrador del sistema"},
     {"name": "Administrador-Jurado", "description": "El que gestiona los votos"},
@@ -19,10 +19,10 @@ for rol in roles:
     print(response.json())
 print('='*30)
 
-#Add result permissions
+# Add result permissions
 
-modules = ['table', 'political_party', 'candidate', 'vote', 'user', 'rol']
-endpoints = [('s', 'GET'), ('/?', 'GET'), ('/insert', 'POST'), ('/update/?', 'PUT'), ('/delete/?', 'DELETE')]
+modules = ['table', 'candidate', 'political_party', 'vote']
+endpoints = [('s', 'GET'), ('/insert', 'POST'), ('/?', 'GET'), ('/update/?', 'PUT'), ('/delete/?', 'DELETE')]
 url = f'{security_backend}/permission/insert'
 for module in modules:
     for endpoint, method in endpoints:

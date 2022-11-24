@@ -26,7 +26,7 @@ def insert_table() -> dict:
     response = requests.post(url, headers=HEADERS, json=table)
     return response.json()
 
-@table_blueprints.route("/table/update/<string:id_>", methods=['PATCH'])
+@table_blueprints.route("/table/update/<string:id_>", methods=['PUT'])
 def update_table(id_: str) -> dict:
     table = request.get_json()
     url = url_base + f"/update/{id_}"

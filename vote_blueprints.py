@@ -7,7 +7,7 @@ data_config = load_file_config()
 url_base = data_config.get("url-backend-result") + "/vote"
 
 
-@vote_blueprints.route("/vote", methods=['GET'])
+@vote_blueprints.route("/votes", methods=['GET'])
 def get_all_vote() -> dict:
     url = url_base + "/all"
     response = requests.get(url, headers=HEADERS)
@@ -29,7 +29,7 @@ def insert_vote() -> dict:
     return response.json()
 
 
-@vote_blueprints.route("/vote/update/<string:id_>", methods=['PATCH'])
+@vote_blueprints.route("/vote/update/<string:id_>", methods=['PUT'])
 def update_vote(id_: str) -> dict:
     vote = request.get_json()
     url = url_base + f"/update/{id_}"

@@ -22,11 +22,11 @@ def get_political_party_by_id(id_: str) -> dict:
 @political_party_blueprints.route("/political_party/insert", methods=['POST'])
 def insert_political_party() -> dict:
     political_party = request.get_json()
-    url = url_base + f"/insert"
+    url = url_base + "/insert"
     response = requests.post(url, headers=HEADERS, json=political_party)
     return response.json()
 
-@political_party_blueprints.route("/political_party/update/<string:id_>", methods=['PATCH'])
+@political_party_blueprints.route("/political_party/update/<string:id_>", methods=['PUT'])
 def update_political_party(id_: str) -> dict:
     political_party = request.get_json()
     url = url_base + f"/update/{id_}"

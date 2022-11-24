@@ -29,7 +29,7 @@ def insert_candidate() -> dict:
     return response.json()
 
 
-@candidate_blueprints.route("/candidate/update/<string:id_>", methods=['PATCH'])
+@candidate_blueprints.route("/candidate/update/<string:id_>", methods=['PUT'])
 def update_candidate(id_: str) -> dict:
     candidate = request.get_json()
     url = url_base + f"/update/{id_}"

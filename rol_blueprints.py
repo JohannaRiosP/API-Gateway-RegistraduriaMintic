@@ -4,7 +4,7 @@ from utils import load_file_config, HEADERS
 
 rol_blueprints = Blueprint("rol_blueprints", __name__)
 data_config = load_file_config()
-url_base = data_config.get("url-backend-result") + "/rol"
+url_base = data_config.get("url-backend-security") + "/rol"
 
 
 @rol_blueprints.route("/rols", methods=['GET'])
@@ -27,7 +27,7 @@ def insert_rol() -> dict:
     response = requests.post(url, headers=HEADERS, json=rol)
     return response.json()
 
-@rol_blueprints.route("/rol/update/<string:id_>", methods=['PATCH'])
+@rol_blueprints.route("/rol/update/<string:id_>", methods=['PUT'])
 def update_rol(id_: int) -> dict:
     rol = request.get_json()
     url = url_base + f"/update/{id_}"

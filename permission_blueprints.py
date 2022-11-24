@@ -4,10 +4,10 @@ from utils import load_file_config, HEADERS
 
 permission_blueprints = Blueprint("permission_blueprints", __name__)
 data_config = load_file_config()
-url_base = data_config.get("url-backend-result") + "/permission"
+url_base = data_config.get("url-backend-security") + "/permission"
 
 
-@permission_blueprints.route("/permission", methods=['GET'])
+@permission_blueprints.route("/permissions", methods=['GET'])
 def get_all_permission() -> dict:
     url = url_base + "/all"
     response = requests.get(url, headers=HEADERS)
@@ -29,7 +29,7 @@ def insert_permission() -> dict:
     return response.json()
 
 
-@permission_blueprints.route("/permission/update/<string:id_>", methods=['PATCH'])
+@permission_blueprints.route("/permission/update/<string:id_>", methods=['PUT'])
 def update_permission(id_: str) -> dict:
     permission = request.get_json()
     url = url_base + f"/update/{id_}"

@@ -19,6 +19,8 @@ app.config["JWT_SECRET_KEY"] = "misiontic"
 cors = CORS(app)
 jwt = JWTManager(app)
 
+
+
 app.register_blueprint(table_blueprints)
 app.register_blueprint(vote_blueprints)
 app.register_blueprint(political_party_blueprints)
@@ -42,8 +44,6 @@ def before_request_callback():
                 return{"message": "Permission denied by grant"}, 401
         else:
             return{"message": "Permission denied by rol"}, 401
-    else:
-        return{"message": "Permission denied"}, 401
 
 
 @app.route("/", methods=['GET'])
@@ -59,7 +59,7 @@ def login() -> tuple:
     response = requests.post(url, headers=utils.HEADERS, json=user)
     if response.status_code == 200:
         user_logged = response.json()
-        del user_logged['rol']['permission']
+        del user_logged['rol']['permissions']
         expires = timedelta(days=1)
         access_token = create_access_token(identity=user_logged, expires_delta=expires)
         return {"token": access_token, "user_id": user_logged.get('id')}, 200

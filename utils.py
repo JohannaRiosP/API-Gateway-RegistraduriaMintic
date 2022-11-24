@@ -3,7 +3,7 @@ import re
 import requests
 
 
-HEADERS = {"Content-Type": "applications/json; charset=utf-8"}
+HEADERS = {"Content-Type": "application/json; charset=utf-8"}
 
 
 def load_file_config() -> dict:
@@ -25,7 +25,7 @@ def clean_url(url:str) -> str:
     for segment in segments:
         if re.search('//d', segment):
             url = url.replace(segment, "?")
-        return url
+    return url
 
 
 def validate_grant(endpoint: str, method: str, id_rol: int) -> bool:
