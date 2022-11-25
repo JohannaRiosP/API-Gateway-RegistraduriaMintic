@@ -43,7 +43,7 @@ def validate_grant(endpoint: str, method: str, id_rol: int) -> bool:
         "url": endpoint,
         "method": method
     }
-    response = requests.get(url, headers=HEADERS, json=body)
+    response = requests.get(url, json=body, headers=HEADERS)
     try:
         if response.status_code == 200:
             has_grant = True

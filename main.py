@@ -12,13 +12,13 @@ from vote_blueprints import vote_blueprints
 from user_blueprints import user_blueprints
 from rol_blueprints import rol_blueprints
 from permission_blueprints import permission_blueprints
+from reports_blueprints import reports_blueprints
 
 
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = "misiontic"
 cors = CORS(app)
 jwt = JWTManager(app)
-
 
 
 app.register_blueprint(table_blueprints)
@@ -28,6 +28,7 @@ app.register_blueprint(candidate_blueprints)
 app.register_blueprint(user_blueprints)
 app.register_blueprint(rol_blueprints)
 app.register_blueprint(permission_blueprints)
+app.register_blueprint(reports_blueprints)
 
 
 @app.before_request
@@ -70,5 +71,6 @@ def login() -> tuple:
 #Config and execute app
 if __name__ == "__main__":
     data_config = utils.load_file_config()
-    print("API Gateway Server Running: http://" + data_config.get("url-api-gateway") + ":" + str(data_config.get("port")))
+    print("API Gateway Server Running: http://" + data_config.get("url-api-gateway") + ":"
+          + str(data_config.get("port")))
     serve(app, host=data_config.get("url-api-gateway"), port=data_config.get("port"))

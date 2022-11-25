@@ -21,12 +21,12 @@ print('='*30)
 
 # Add result permissions
 
-modules = ['table', 'candidate', 'political_party', 'vote']
-endpoints = [('s', 'GET'), ('/insert', 'POST'), ('/?', 'GET'), ('/update/?', 'PUT'), ('/delete/?', 'DELETE')]
+modules = ['table', 'candidate', 'political_party', 'vote', 'user', 'rol']
+endpoints = [('s', 'GET'), ('/?', 'GET'), ('/insert', 'POST'),  ('/update/?', 'PUT'), ('/delete/?', 'DELETE')]
 url = f'{security_backend}/permission/insert'
 for module in modules:
     for endpoint, method in endpoints:
-        permission = f'{module}{endpoint}'
+        permission = f'/{module}{endpoint}'
         body = {
             "url": permission,
             "method": method
@@ -34,6 +34,6 @@ for module in modules:
         response = requests.post(url, headers=headers, json=body)
         print(response.json())
         data_ = response.json()
-        url_relation = f'{security_backend}/update/{admin.get("idRol")}/add_permission/{data_.get("idPermission")}'
+        url_relation = f'{security_backend}/rol/update/{admin.get("idRol")}/add_permission/{data_.get("idPermission")}'
         response = requests.put(url_relation, headers=headers)
 
