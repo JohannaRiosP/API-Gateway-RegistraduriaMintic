@@ -9,14 +9,14 @@ url_base = data_config.get("url-backend-result") + "/reports"
 
 @reports_blueprints.route("/reports/table_votes/all", methods=['GET'])
 def report_tables_enrollments() -> dict:
-    url = f'{url_base}/table_votes/all'
+    url = f'{url_base}reports/votes_by_total_tables'
     response = requests.get(url, headers=HEADERS)
     return response.json()
 
 
 @reports_blueprints.route("/reports/table_votes/<string:id_>", methods=['GET'])
 def report_tables_votes_by_id(id_: str) -> dict:
-    url = f'{url_base}/table_votes/{id_}'
+    url = f'{url_base}reports/votes_by_table{id_}'
     response = requests.get(url, headers=HEADERS)
     return response.json()
 
@@ -42,7 +42,7 @@ def report_tables_top_votes() -> dict:
     return response.json()
 
 
-@reports_blueprints.route("/reports/politic_party_votes", methods=['GET'])
+@reports_blueprints.route("/reports/politic_party_votes<string:id_>", methods=['GET'])
 def report_politic_party_votes() -> dict:
     url = f'{url_base}/politic_party_votes'
     response = requests.get(url, headers=HEADERS)

@@ -34,7 +34,7 @@ def update_table(id_: str) -> dict:
     return response.json()
 
 @table_blueprints.route("/table/delete/<string:id_>", methods=['DELETE'])
-def delete_table(id_: str) -> dict:
+def delete_table(id_: str) -> tuple:
     url = url_base + f"/delete/{id_}"
     response = requests.delete(url, headers=HEADERS)
     return {"message": "done"}, response.status_code

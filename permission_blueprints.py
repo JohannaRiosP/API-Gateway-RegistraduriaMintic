@@ -8,7 +8,7 @@ url_base = data_config.get("url-backend-security") + "/permission"
 
 
 @permission_blueprints.route("/permissions", methods=['GET'])
-def get_all_permission() -> dict:
+def get_all_permissions() -> dict:
     url = url_base + "/all"
     response = requests.get(url, headers=HEADERS)
     return response.json()
@@ -33,12 +33,12 @@ def insert_permission() -> dict:
 def update_permission(id_: str) -> dict:
     permission = request.get_json()
     url = url_base + f"/update/{id_}"
-    response = requests.patch(url, headers=HEADERS, json=permission)
+    response = requests.put(url, headers=HEADERS, json=permission)
     return response.json()
 
 
 @permission_blueprints.route("/permission/delete/<string:id_>", methods=['DELETE'])
-def delete_permission(id_: str) -> dict:
+def delete_permission(id_: str) -> tuple:
     url = url_base + f"/delete/{id_}"
     response = requests.delete(url, headers=HEADERS)
     return {"message": "done"}, response.status_code

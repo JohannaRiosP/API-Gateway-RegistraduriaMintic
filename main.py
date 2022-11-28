@@ -32,7 +32,11 @@ app.register_blueprint(reports_blueprints)
 
 
 @app.before_request
-def before_request_callback():
+def before_request_callback() -> tuple:
+    """
+
+    :return:
+    """
     endpoint = utils.clean_url(request.path)
     exclude_routes = ['/login', '/']
     if endpoint in exclude_routes:
@@ -48,8 +52,8 @@ def before_request_callback():
 
 
 @app.route("/", methods=['GET'])
-def home():
-    response = {"message": "Welcome to the academic API Gateway..."}
+def home() -> dict:
+    response = {"message": "Welcome to the Registraduria Mintic API Gateway..."}
     return response
 
 
@@ -57,7 +61,7 @@ def home():
 def login() -> tuple:
     user = request.get_json()
     url = data_config.get("url-backend-security") + "/user/login"
-    response = requests.post(url, headers=utils.HEADERS, json=user)
+    response = requests.post(url, json=user, headers=utils.HEADERS)
     if response.status_code == 200:
         user_logged = response.json()
         del user_logged['rol']['permissions']

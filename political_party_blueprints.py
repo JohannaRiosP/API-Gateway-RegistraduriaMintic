@@ -34,7 +34,7 @@ def update_political_party(id_: str) -> dict:
     return response.json()
 
 @political_party_blueprints.route("/political_party/delete/<string:id_>", methods=['DELETE'])
-def delete_political_party(id_: str) -> dict:
+def delete_political_party(id_: str) -> tuple:
     url = url_base + f"/delete/{id_}"
     response = requests.delete(url, headers=HEADERS)
     return response.json()

@@ -15,6 +15,7 @@ def load_file_config() -> dict:
         data = json.load(file_)
         return data
 
+
 def clean_url(url:str) -> str:
     """
     Replace id by ?

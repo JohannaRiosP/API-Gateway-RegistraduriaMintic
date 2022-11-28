@@ -21,7 +21,7 @@ print('='*30)
 
 # Add result permissions
 
-modules = ['table', 'candidate', 'political_party', 'vote', 'user', 'rol']
+modules = ['table', 'candidate', 'political_party', 'vote', 'user', 'rol', 'report']
 endpoints = [('s', 'GET'), ('/?', 'GET'), ('/insert', 'POST'),  ('/update/?', 'PUT'), ('/delete/?', 'DELETE')]
 url = f'{security_backend}/permission/insert'
 for module in modules:
